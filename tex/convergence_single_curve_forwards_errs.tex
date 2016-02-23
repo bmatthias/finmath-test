@@ -1,0 +1,58 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+%	\begin{axis}[ybar=1pt, thick, width=\linewidth, height=200pt, ymin = 0, ytick align=outside, %ymode=log,
+%         	ytick pos=left, xtick align=outside,
+%         	xtick pos=left,
+%         	xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+%			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+%   			xtick=data,
+%			bar width=24pt
+%	]
+%
+%		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+%
+%		\addplot[color=s0,fill=s0] coordinates { (1x1000,4.2193232147E-5) (1x10000,1.269173362E-5) (1x100000,4.8840861054E-6) (10x100000,1.650638545E-6)  };
+%		\addplot[color=s1,fill=s1] coordinates { (1x1000,1.1700237778E-5) (1x10000,2.1923866305E-6) (1x100000,1.0170553998E-6) (10x100000,2.8777283736E-7)  };
+%		\addplot[color=s2,fill=s2] coordinates { (1x1000,1.7037542765E-5) (1x10000,3.7594756938E-6) (1x100000,1.7634796464E-6) (10x100000,5.2872236525E-7)  };
+%
+%	\end{axis}
+%	\begin{axis}[ybar=1pt, thick, width=\linewidth, height=200pt, ymin = 0, ytick align=outside, %ymode=log,
+%         	ytick pos=left, xtick align=outside,
+%         	xtick pos=left,
+%         	xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+%			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+%   			xtick=data,
+%			bar width=24pt
+%	]
+%
+%		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+%
+%		\addplot[color=s0,fill=s0] coordinates { (1x1000,4.2193232147E-5) (1x10000,1.269173362E-5) (1x100000,4.8840861054E-6) (10x100000,1.650638545E-6)  };
+%		\addplot[color=s1,fill=s1] coordinates { (1x1000,1.1700237778E-5) (1x10000,2.1923866305E-6) (1x100000,1.0170553998E-6) (10x100000,2.8777283736E-7)  };
+%		\addplot[color=s2,fill=s2] coordinates { (1x1000,1.7037542765E-5) (1x10000,3.7594756938E-6) (1x100000,1.7634796464E-6) (10x100000,5.2872236525E-7)  };
+%
+%	\end{axis}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=200pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1}, xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+  			xtick=data,
+			bar width=24pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (1x1000,4.2193232147E-5) (1x10000,1.269173362E-5) (1x100000,4.8840861054E-6) (10x100000,1.650638545E-6)  };
+		\addplot[color=s1,fill=s1] coordinates { (1x1000,1.1700237778E-5) (1x10000,2.1923866305E-6) (1x100000,1.0170553998E-6) (10x100000,2.8777283736E-7)  };
+		\addplot[color=s2,fill=s2] coordinates { (1x1000,1.7037542765E-5) (1x10000,3.7594756938E-6) (1x100000,1.7634796464E-6) (10x100000,5.2872236525E-7)  };
+
+		\legend{Max Error,Mean Error,Mean Square Error}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Valuation of single-curve forward rates with different amounts of Monte- Carlo paths. Here, MxN means the average was taken over M runs with N paths, respectively.}
+\end{minipage}
+\end{center}

@@ -1,0 +1,28 @@
+\begin{center}
+  \begin{minipage}{\linewidth}
+    \begin{tikzpicture}
+      \begin{axis}[smooth, thick,
+          width=0.98\linewidth,height=260pt,
+          ymajorgrids={true},minor y tick num={1},yminorgrids={true},
+          grid style={gray!30},
+          xlabel={xLabel},xlabel style={yshift=-0.4cm,xshift=1cm},
+          ylabel={yLabel},
+          legend style={at={(0.5,-0.25)},anchor=north,draw=none,legend columns=4}, % Put the legend below the plot
+          xtick align=outside,
+          xtick pos=left,
+          ytick align=outside,
+          ytick pos=left,
+          xmin = 0,
+          ymin = yMin,
+          ymax = yMax,
+          x label style={rotate=0,anchor=east} % Display labels sideways
+        ]
+
+        plotsArea
+        \legend{ productString }
+      \end{axis}
+    \end{tikzpicture}
+    \captionof{figure}{Caption}
+  \end{minipage}
+\end{center}
+

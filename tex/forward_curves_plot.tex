@@ -1,0 +1,46 @@
+\begin{center}
+  \begin{minipage}{\linewidth}
+    \begin{tikzpicture}
+      \begin{axis}[smooth, thick,
+          width=0.98\linewidth,height=260pt,
+          ymajorgrids={true},minor y tick num={1},yminorgrids={true},
+          grid style={gray!30},
+          xlabel={Time [years]},xlabel style={yshift=-0.4cm,xshift=1cm},
+          ylabel={Forward Rate [\%]},
+          legend style={at={(0.5,-0.25)},anchor=north,draw=none,legend columns=4}, % Put the legend below the plot
+          xtick align=outside,
+          xtick pos=left,
+          ytick align=outside,
+          ytick pos=left,
+          xmin = 0,
+          ymin = -0.5,
+          ymax = 5.0,
+          x label style={rotate=0,anchor=east} % Display labels sideways
+        ]
+
+        \addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s0,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        table[x=Time,y=LIBOR Forward Rate Multi-Curve,y error=LIBOR Forward Rate Multi-Curve Error,col sep=tab] {results/pricing_2010_convergence/1000_additive_1/initial_calibration_results.csv};
+
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s1,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        table[x=Time,y=OIS Forward Rate Multi-Curve,y error=OIS Forward Rate Multi-Curve Error,col sep=tab] {results/pricing_2010_convergence/1000_additive_1/initial_calibration_results.csv};
+
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s2,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        table[x=Time,y=LIBOR Forward Rate Multi-Curve,y error=LIBOR Forward Rate Multi-Curve Error,col sep=tab] {results/pricing_2013_convergence/1000_additive_1/initial_calibration_results.csv};
+
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s3,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        table[x=Time,y=OIS Forward Rate Multi-Curve,y error=OIS Forward Rate Multi-Curve Error,col sep=tab] {results/pricing_2013_convergence/1000_additive_1/initial_calibration_results.csv};
+
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s4,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        table[x=Time,y=LIBOR Forward Rate Multi-Curve,y error=LIBOR Forward Rate Multi-Curve Error,col sep=tab] {results/pricing_2015_convergence/1000_additive_1/initial_calibration_results.csv};
+
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s5,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        table[x=Time,y=OIS Forward Rate Multi-Curve,y error=OIS Forward Rate Multi-Curve Error,col sep=tab] {results/pricing_2015_convergence/1000_additive_1/initial_calibration_results.csv};
+
+
+        \legend{ LIBOR High,OIS High,LIBOR Low,OIS Low,LIBOR Negative,OIS Negative }
+      \end{axis}
+    \end{tikzpicture}
+    \captionof{figure}{Different forward rates test scenarios.}
+  \end{minipage}
+\end{center}
+

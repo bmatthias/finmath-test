@@ -1,0 +1,58 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+%	\begin{axis}[ybar=1pt, thick, width=\linewidth, height=200pt, ymin = 0, ytick align=outside, %ymode=log,
+%         	ytick pos=left, xtick align=outside,
+%         	xtick pos=left,
+%         	xmin={[normalized]-0.6}, xmax={[normalized]numberOfTests.6},
+%			symbolic x coords={ testTypes },
+%   			xtick=data,
+%			bar width=barWidthpt
+%	]
+%
+%		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+%
+%		\addplot[color=s0,fill=s0] coordinates { maxErrorMaxCoordinates };
+%		\addplot[color=s1,fill=s1] coordinates { meanErrorMaxCoordinates };
+%		\addplot[color=s2,fill=s2] coordinates { squaredErrorMaxCoordinates };
+%
+%	\end{axis}
+%	\begin{axis}[ybar=1pt, thick, width=\linewidth, height=200pt, ymin = 0, ytick align=outside, %ymode=log,
+%         	ytick pos=left, xtick align=outside,
+%         	xtick pos=left,
+%         	xmin={[normalized]-0.6}, xmax={[normalized]numberOfTests.6},
+%			symbolic x coords={ testTypes },
+%   			xtick=data,
+%			bar width=barWidthpt
+%	]
+%
+%		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+%
+%		\addplot[color=s0,fill=s0] coordinates { maxErrorMinCoordinates };
+%		\addplot[color=s1,fill=s1] coordinates { meanErrorMinCoordinates };
+%		\addplot[color=s2,fill=s2] coordinates { squaredErrorMinCoordinates };
+%
+%	\end{axis}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=200pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1}, xmin={[normalized]-0.6}, xmax={[normalized]numberOfTests.6},
+			symbolic x coords={ testTypes },
+  			xtick=data,
+			bar width=barWidthpt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { maxErrorCoordinates };
+		\addplot[color=s1,fill=s1] coordinates { meanErrorCoordinates };
+		\addplot[color=s2,fill=s2] coordinates { squaredErrorCoordinates };
+
+		\legend{Max Error,Mean Error,Mean Square Error}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Caption}
+\end{minipage}
+\end{center}

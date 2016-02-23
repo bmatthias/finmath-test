@@ -1,0 +1,29 @@
+group 'com.bmatthias'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile files('finmath-lib-2.0.1-SNAPSHOT-jar-with-dependencies.jar')
+    compile "commons-cli:commons-cli:1.2"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.bmatthias.finmath.test.Runner"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
