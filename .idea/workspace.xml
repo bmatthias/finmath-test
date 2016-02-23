@@ -98,7 +98,108 @@
     <favorites_list name="finmath-test" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="pricing_synth.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/pricing_synth.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="69" selection-start-line="59" selection-start-column="69" selection-end-line="59" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pricing_local.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/pricing_local.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spread_convergence.groovy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/spread_convergence.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.3888888">
+              <caret line="66" column="87" selection-start-line="66" selection-start-column="87" selection-end-line="66" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="caplet_analytic_formulas_zero_correlation.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_zero_correlation.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="128" column="106" selection-start-line="128" selection-start-column="92" selection-end-line="128" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convergence_multi_curve.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/convergence_multi_curve.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pricing_2010.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/pricing_2010.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="90" selection-start-line="66" selection-start-column="90" selection-end-line="66" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pricing_2013.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/pricing_2013.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.8867927">
+              <caret line="84" column="56" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pricing_2015.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/pricing_2015.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.8679247">
+              <caret line="91" column="90" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="caplet_analytic_formulas_correlation_vs_error.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_correlation_vs_error.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="184" column="139" selection-start-line="184" selection-start-column="125" selection-end-line="184" selection-end-column="139" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="caplet_analytic_formulas_vola_vs_error.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_vola_vs_error.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="184" column="133" selection-start-line="184" selection-start-column="119" selection-end-line="184" selection-end-column="133" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -399,14 +500,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/tests/pricing_2015.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/tests/pricing_synth.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/tests/spread_convergence.groovy" />
-        <option value="$PROJECT_DIR$/tests/pricing_2010.groovy" />
-        <option value="$PROJECT_DIR$/tests/pricing_2013.groovy" />
-        <option value="$PROJECT_DIR$/tests/pricing_2015.groovy" />
-        <option value="$PROJECT_DIR$/tests/pricing_synth.groovy" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/Runner.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/TestScriptBaseClass.groovy" />
-        <option value="$PROJECT_DIR$/tests/pricing_local.groovy" />
         <option value="$PROJECT_DIR$/tests/convergence_2015.groovy" />
         <option value="$PROJECT_DIR$/tests/convergence_2013.groovy" />
         <option value="$PROJECT_DIR$/tests/convergence_2010.groovy" />
@@ -414,8 +510,6 @@
         <option value="$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/Test.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/Plot.groovy" />
         <option value="$PROJECT_DIR$/plots/info_plots.groovy" />
-        <option value="$PROJECT_DIR$/plots/caplet_analytic_formulas_correlation_vs_error.groovy" />
-        <option value="$PROJECT_DIR$/plots/caplet_analytic_formulas_vola_vs_error.groovy" />
         <option value="$PROJECT_DIR$/src/main/java/com/bmatthias/finmath/test/tools/tools/CSVHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bmatthias/finmath/test/tools/tools/TexCreator.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/Helper.groovy" />
@@ -423,6 +517,15 @@
         <option value="$PROJECT_DIR$/plots/convergence_multi_curve.groovy" />
         <option value="$PROJECT_DIR$/tests/spread_convergence.groovy" />
         <option value="$PROJECT_DIR$/plots/low_spread_value_convergence.groovy" />
+        <option value="$PROJECT_DIR$/plots/caplet_analytic_formulas_strong_correlation.groovy" />
+        <option value="$PROJECT_DIR$/plots/caplet_analytic_formulas_zero_correlation.groovy" />
+        <option value="$PROJECT_DIR$/plots/caplet_analytic_formulas_correlation_vs_error.groovy" />
+        <option value="$PROJECT_DIR$/plots/caplet_analytic_formulas_vola_vs_error.groovy" />
+        <option value="$PROJECT_DIR$/tests/pricing_2010.groovy" />
+        <option value="$PROJECT_DIR$/tests/pricing_2013.groovy" />
+        <option value="$PROJECT_DIR$/tests/pricing_2015.groovy" />
+        <option value="$PROJECT_DIR$/tests/pricing_synth.groovy" />
+        <option value="$PROJECT_DIR$/tests/pricing_local.groovy" />
       </list>
     </option>
   </component>
@@ -441,7 +544,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="823" />
+    <option name="height" value="822" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1293,16 +1396,16 @@
       <workItem from="1455992404994" duration="33151000" />
       <workItem from="1456090415232" duration="3730000" />
       <workItem from="1456101972606" duration="10057000" />
-      <workItem from="1456227618300" duration="6572000" />
+      <workItem from="1456227618300" duration="8387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55056000" />
+    <option name="totallyTimeSpent" value="56871000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="823" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1440" height="822" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1314,7 +1417,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6634921" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22889842" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22889842" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14430268" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24989001" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1370,14 +1473,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/convergence_2010.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/pricing_local.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1595,50 +1690,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/pricing_2010.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/pricing_2013.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/pricing_local.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/pricing_synth.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/convergence_2015.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/pricing_2015.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1659,42 +1714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/Plot.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.514936">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/info_plots.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.115384616">
           <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/caplets.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4694168">
-          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_correlation_vs_error.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93741107">
-          <caret line="88" column="96" selection-start-line="88" selection-start-column="96" selection-end-line="88" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_vola_vs_error.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93741107">
-          <caret line="88" column="157" selection-start-line="88" selection-start-column="157" selection-end-line="88" selection-end-column="157" />
           <folding />
         </state>
       </provider>
@@ -1739,17 +1762,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/plots/caplets.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47008547">
+          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/com/bmatthias/finmath/test/Plot.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="13" selection-start-line="17" selection-start-column="45" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_strong_correlation.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_zero_correlation.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="128" column="106" selection-start-line="128" selection-start-column="92" selection-end-line="128" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plots/convergence_multi_curve.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="1" />
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_correlation_vs_error.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="184" column="139" selection-start-line="184" selection-start-column="125" selection-end-line="184" selection-end-column="139" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/caplet_analytic_formulas_vola_vs_error.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="184" column="133" selection-start-line="184" selection-start-column="119" selection-end-line="184" selection-end-column="133" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/pricing_2010.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="90" selection-start-line="66" selection-start-column="90" selection-end-line="66" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/pricing_2013.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.8867927">
+          <caret line="84" column="56" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/pricing_2015.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8679247">
+          <caret line="91" column="90" selection-start-line="91" selection-start-column="90" selection-end-line="91" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/pricing_synth.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="69" selection-start-line="59" selection-start-column="69" selection-end-line="59" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/pricing_local.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/spread_convergence.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70128024">
+        <state vertical-scroll-proportion="1.3888888">
           <caret line="66" column="87" selection-start-line="66" selection-start-column="87" selection-end-line="66" selection-end-column="87" />
           <folding />
         </state>
