@@ -1,6 +1,7 @@
 package tests
 
 import com.bmatthias.finmath.test.tools.tools.calibrationdata.SyntheticProductsWithCapletCalibration
+import net.finmath.marketdata.model.curves.ForwardCurve
 import net.finmath.montecarlo.interestrate.MultiCurveLIBORMarketModel
 
 /*
@@ -16,7 +17,11 @@ Creates four tests with increasing number of monte carlo paths
                 numberOfSeeds: paths[0],
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.ADDITIVE,
                 numberOfRandomRuns: 0,
-                setParams: false
+                setParams: false,
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
+                calibrateSC: true,
+                calibrateMC: true
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
@@ -40,7 +45,11 @@ Creates four tests with increasing number of monte carlo paths
                 numberOfSeeds: paths[0],
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.MULTIPLICATIVE,
                 numberOfRandomRuns: 0,
-                setParams: false
+                setParams: false,
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
+                calibrateSC: true,
+                calibrateMC: true
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
@@ -64,7 +73,11 @@ Creates four tests with increasing number of monte carlo paths
                 numberOfSeeds: paths[0],
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.MMARTINGALE,
                 numberOfRandomRuns: 0,
-                setParams: false
+                setParams: false,
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
+                calibrateSC: true,
+                calibrateMC: true
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(

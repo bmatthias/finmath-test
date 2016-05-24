@@ -1,8 +1,8 @@
 \begin{center}
   \begin{minipage}{\linewidth}
     \begin{tikzpicture}
-      \begin{axis}[smooth, thick,
-          width=0.98\linewidth,height=260pt,
+      \begin{axis}[smooth, thick,cycle list name=plots,
+          width=0.98\linewidth,height=220pt,
           ymajorgrids={true},minor y tick num={1},yminorgrids={true},
           grid style={gray!30},
           xlabel={Caplet Maturity [years]},xlabel style={yshift=-0.4cm,xshift=1cm},
@@ -18,13 +18,13 @@
           x label style={rotate=0,anchor=east} % Display labels sideways
         ]
 
-        \addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s0,mark=*,mark options={solid},smooth,line width=1.25pt] 
+        \addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][smooth] 
         table[x=Time,y=Target (LIBOR),y error=Target (LIBOR) Error,col sep=tab] {results/pricing_2010_convergence/1000_additive_1/initial_calibration_results.csv};
 
-\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s1,mark=*,mark options={solid},smooth,line width=1.25pt] 
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][smooth] 
         table[x=Time,y=Target (LIBOR),y error=Target (LIBOR) Error,col sep=tab] {results/pricing_2013_convergence/1000_additive_1/initial_calibration_results.csv};
 
-\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][color=s2,mark=*,mark options={solid},smooth,line width=1.25pt] 
+\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}][smooth] 
         table[x=Time,y=Target (LIBOR),y error=Target (LIBOR) Error,col sep=tab] {results/pricing_2015_convergence/1000_additive_1/initial_calibration_results.csv};
 
 

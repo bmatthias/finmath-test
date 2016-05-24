@@ -9,6 +9,7 @@ import com.bmatthias.finmath.test.tools.tools.CSVHelper;
 import com.bmatthias.finmath.test.tools.tools.CalibrationData;
 import net.finmath.exception.CalculationException;
 import net.finmath.marketdata.model.AnalyticModelInterface;
+import net.finmath.marketdata.model.curves.ForwardCurveInterface;
 import net.finmath.montecarlo.BrownianMotion;
 import net.finmath.montecarlo.BrownianMotionInterface;
 import net.finmath.montecarlo.RandomVariable;
@@ -32,6 +33,8 @@ import java.util.*;
  * @author Christian Fries
  */
 public class MultiCurveLIBORMarketModelCalibration {
+    private ForwardCurveInterface oisShift;
+    private ForwardCurveInterface spreadShift;
     private int numberOfFactors = 20;
     private int numberOfPaths = 10000;
     private Integer numberOfParams = 17;
@@ -63,7 +66,10 @@ public class MultiCurveLIBORMarketModelCalibration {
             Integer numberOfFactors, Integer[] numberOfPaths,
             MultiCurveLIBORMarketModel.MultiCurveModel multiCurveModel,
             Boolean useSeperateCorrelationModels, Integer numberOfParams,
-            Double[] oisParams, Double[] spreadParams, Boolean calibrate, Boolean setParams) {
+            Double[] oisParams, Double[] spreadParams, Boolean calibrate, Boolean setParams,
+            ForwardCurveInterface oisShift, ForwardCurveInterface spreadShift) {
+        this.oisShift = oisShift;
+        this.spreadShift = spreadShift;
         if(numberOfPaths[0] != null) this.numberOfSeeds = numberOfPaths[0];
         if(numberOfPaths[1] != null) this.numberOfPaths = numberOfPaths[1];
         if(numberOfParams != null) this.numberOfParams = numberOfParams;
@@ -135,7 +141,9 @@ public class MultiCurveLIBORMarketModelCalibration {
         if(setParams) covarianceModelParametric.setParameter(oisParams);
 
         LIBORMarketModelInterface scLiborMarketModelCalibrated = new MultiCurveLIBORMarketModel(
-                liborPeriodDiscretization, analyticModel, eoniaCurveName, eoniaCurveName, covarianceModelParametric,
+                liborPeriodDiscretization, analyticModel, eoniaCurveName, eoniaCurveName,
+                oisShift, spreadShift,
+                covarianceModelParametric,
                 calibrateSC ? eoniaCalibrationItems : new CalibrationItem[0], mcProperties);
 
         this.oisParams = ((AbstractLIBORCovarianceModelParametric) scLiborMarketModelCalibrated.getCovarianceModel()).getParameter();
@@ -149,7 +157,9 @@ public class MultiCurveLIBORMarketModelCalibration {
         long start = System.currentTimeMillis();
 
         LIBORMarketModelInterface mcLiborMarketModelCalibrated = new MultiCurveLIBORMarketModel(
-                liborPeriodDiscretization, analyticModel, forwardCurveName, eoniaCurveName, covarianceModelParametric,
+                liborPeriodDiscretization, analyticModel, forwardCurveName, eoniaCurveName,
+                oisShift, spreadShift,
+                covarianceModelParametric,
                 calibrateMC ? euriborCalibrationItems : new CalibrationItem[0], mcProperties);
 
         this.spreadParams = ((AbstractLIBORCovarianceModelParametric) mcLiborMarketModelCalibrated.getCovarianceModel()).getParameter();
@@ -218,6 +228,7 @@ public class MultiCurveLIBORMarketModelCalibration {
         CSVHelper.writeErrorStatistics(baseName, results);
         CSVHelper.writeParamsAndDuration(baseName, this.oisParams, this.spreadParams, duration, calibrationData);
         CSVHelper.writeProcess(baseName, (MultiCurveLIBORMarketModel)mcLiborMarketModelCalibrated);
+        CSVHelper.writeFactorMatrix(baseName, (LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters) mcLiborMarketModelCalibrated.getCovarianceModel());
         CSVHelper.writeCorrelationMatrix(baseName, (LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters) mcLiborMarketModelCalibrated.getCovarianceModel());
         CSVHelper.writeCovariance(baseName, mcLiborMarketModelCalibrated.getCovarianceModel());
         CSVHelper.writeVolatilitySurface(baseName, mcLiborMarketModelCalibrated.getCovarianceModel());
@@ -264,7 +275,7 @@ public class MultiCurveLIBORMarketModelCalibration {
         }
 
         LIBORVolatilityModel volatilityModel = new LIBORVolatilityModelTwoCurveEightParameterExponentialForm(timeDiscretization, liborPeriodDiscretization, fixedVolParams, true);
-        return new LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters(timeDiscretization, liborPeriodDiscretization, volatilityModel, correlationModel, new double[]{ 0.004 });
+        return new LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters(timeDiscretization, liborPeriodDiscretization, volatilityModel, correlationModel, new double[]{ 0.5 });
     }
 
     private AbstractLIBORCovarianceModelParametric getSingleCurveCovarianceModel(TimeDiscretizationInterface timeDiscretization, TimeDiscretizationInterface liborPeriodDiscretization) {
@@ -275,7 +286,7 @@ public class MultiCurveLIBORMarketModelCalibration {
             correlationModel = new LIBORCorrelationModelThreeParameterExponentialDecay(timeDiscretization, liborPeriodDiscretization, numberOfFactors, 0.1, 0.1, 0.1, true);
         }
         LIBORVolatilityModel volatilityModel = new LIBORVolatilityModelFourParameterExponentialForm(timeDiscretization, liborPeriodDiscretization, 0.1, 0.1, 0.1, 0.1, true);
-        return new LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters(timeDiscretization, liborPeriodDiscretization, volatilityModel, correlationModel, new double[]{ 0.004 });
+        return new LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters(timeDiscretization, liborPeriodDiscretization, volatilityModel, correlationModel, new double[]{ 0.5 });
     }
 
     private RandomVariableInterface getOptionValue(RandomVariableInterface currentResult, AbstractLIBORMonteCarloProduct product,

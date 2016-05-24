@@ -1,0 +1,26 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=180pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			%legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1},
+			xmin={[normalized]-0.6}, xmax={[normalized]1.6},
+			symbolic x coords={ Drift-Freeze,Swap Measure },
+  			xtick=data,
+			bar width=48pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (Drift-Freeze,0.0075835456543) (Swap Measure,0.0080963287515)  };
+		\addplot[color=s1,fill=s1] coordinates { (Drift-Freeze,0.0018592701973) (Swap Measure,0.0048633377686)  };
+		\addplot[color=s2,fill=s2] coordinates { (Drift-Freeze,0.0026430102685) (Swap Measure,0.0053756629277)  };
+
+		\legend{Max Error,Mean Error,RMSE}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Error of swaption approximation compared to Monte-Carlo simulation.}
+\end{minipage}
+\end{center}

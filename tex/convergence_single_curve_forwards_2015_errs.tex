@@ -1,0 +1,26 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=180pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			%legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1},
+			xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+  			xtick=data,
+			bar width=24pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (1x1000,0.0030839393714) (1x10000,7.1823171285E-4) (1x100000,4.0485658984E-4) (10x100000,4.0979354341E-4)  };
+		\addplot[color=s1,fill=s1] coordinates { (1x1000,0.0010486757642) (1x10000,2.8987659776E-4) (1x100000,1.4920826766E-4) (10x100000,1.6292887369E-4)  };
+		\addplot[color=s2,fill=s2] coordinates { (1x1000,0.0013978877877) (1x10000,3.4291593836E-4) (1x100000,1.9209171748E-4) (10x100000,2.0688289321E-4)  };
+
+		\legend{Max Error,Mean Error,RMSE}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Valuation of single-curve forward rates with different amounts of Monte- Carlo paths. Here, MxN means the average was taken over M runs with N paths, respectively.}
+\end{minipage}
+\end{center}

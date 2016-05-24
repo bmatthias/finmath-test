@@ -1,0 +1,31 @@
+\begin{center}
+  \begin{minipage}{\linewidth}
+    \begin{tikzpicture}
+      \begin{axis}[smooth, thick,cycle list name=plots,
+          width=0.98\linewidth,height=220pt,
+          ymajorgrids={true},minor y tick num={1},yminorgrids={true},
+          grid style={gray!30},
+          xlabel={Correlation},xlabel style={yshift=-0.4cm,xshift=1cm},
+          ylabel={Error},
+          legend style={at={(0.5,-0.25)},anchor=north,draw=none,legend columns=4}, % Put the legend below the plot
+          xtick align=outside,
+          xtick pos=left,
+          ytick align=outside,
+          ytick pos=left,
+          xmin = 0,
+          ymin = 0.0,
+          ymax = 0.04,
+          x label style={rotate=0,anchor=east} % Display labels sideways
+        ]
+
+        \addplot[color=s0] coordinates { (0,0.017301037759)(1,0.014458541396)(2,0.012079406216)(3,0.010246155743)(4,0.0091046890874)(5,0.0087615179614)(6,0.0091486425646)(7,0.010035137049)(8,0.011158229712)(9,0.012313416839)(10,0.013301341625) };
+\addplot[color=s1] coordinates { (0,0.021504268348)(1,0.018908232704)(2,0.016659465483)(3,0.014809797618)(4,0.013419794877)(5,0.012544902873)(6,0.012236838519)(7,0.01257818852)(8,0.013658566996)(9,0.015575126544)(10,0.018303434178) };
+\addplot[color=s2] coordinates { (0,0.019970079469)(1,0.017331402739)(2,0.015203622366)(3,0.01357302779)(4,0.012430264392)(5,0.011757246688)(6,0.011532787195)(7,0.011768294537)(8,0.012490977775)(9,0.01374341021)(10,0.015496330415) };
+
+        \legend{ Integrated-Expectation,Levy,Ju }
+      \end{axis}
+    \end{tikzpicture}
+    \captionof{figure}{Caption}
+  \end{minipage}
+\end{center}
+

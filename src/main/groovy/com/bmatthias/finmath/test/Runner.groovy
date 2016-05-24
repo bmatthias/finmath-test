@@ -60,6 +60,7 @@ class Runner {
             try {
                 script.run()
             } catch (Throwable t) {
+                t.printStackTrace()
                 println "Unexpected exception in script ${script} with message: ${t.message}"
             }
         }

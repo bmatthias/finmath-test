@@ -1,0 +1,26 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=180pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			%legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1},
+			xmin={[normalized]-0.6}, xmax={[normalized]2.6},
+			symbolic x coords={ Integrated-Expectation,Levy,Ju },
+  			xtick=data,
+			bar width=32pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (Integrated-Expectation,0.028427488736) (Levy,0.036780264995) (Ju,0.032253750709)  };
+		\addplot[color=s1,fill=s1] coordinates { (Integrated-Expectation,0.010887706037) (Levy,0.015341919779) (Ju,0.01279379028)  };
+		\addplot[color=s2,fill=s2] coordinates { (Integrated-Expectation,0.013301341625) (Levy,0.018303434178) (Ju,0.015496330415)  };
+
+		\legend{Max Error,Mean Error,RMSE}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Valuation of ATM caplets in the single-curve model compared to the valuation in a multi-curve model}
+\end{minipage}
+\end{center}

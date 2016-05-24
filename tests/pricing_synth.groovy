@@ -1,5 +1,3 @@
-package tests
-
 import com.bmatthias.finmath.test.tools.tools.calibrationdata.SyntheticProductsWithCapletCalibration
 import net.finmath.montecarlo.interestrate.MultiCurveLIBORMarketModel
 
@@ -102,3 +100,4 @@ Creates ten tests with increasing volatility and otherwise identical parameters
         )
     }
 }
+

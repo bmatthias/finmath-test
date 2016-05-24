@@ -1,7 +1,7 @@
 import com.bmatthias.finmath.test.Helper
 import com.bmatthias.finmath.test.Plot
 
-/*plot('caplet_analytic_formulas_vola_vs_error_2015_additive') {
+plot('caplet_analytic_formulas_vola_vs_error_2015_additive') {
     params = [
             xLabel: 'Volatility',
             yLabel: 'Error',
@@ -23,7 +23,7 @@ import com.bmatthias.finmath.test.Plot
 
         plotFromValues(productsToCoordinates)
     }
-}*/
+}
 
 plot('caplet_analytic_formulas_vola_vs_error_2013_additive') {
     params = [
@@ -97,7 +97,7 @@ plot('caplet_analytic_formulas_vola_vs_error_synth_additive') {
     }
 }
 
-/*plot('caplet_analytic_formulas_vola_vs_error_2015_multiplicative') {
+plot('caplet_analytic_formulas_vola_vs_error_2015_multiplicative') {
     params = [
             xLabel: 'Volatility',
             yLabel: 'Error',
@@ -119,7 +119,7 @@ plot('caplet_analytic_formulas_vola_vs_error_synth_additive') {
 
         plotFromValues(productsToCoordinates)
     }
-}*/
+}
 
 plot('caplet_analytic_formulas_vola_vs_error_2013_multiplicative') {
     params = [

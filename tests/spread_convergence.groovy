@@ -3,10 +3,13 @@ package tests
 import com.bmatthias.finmath.test.tools.tools.calibrationdata.SyntheticProductsWithCapletCalibration
 import net.finmath.montecarlo.interestrate.MultiCurveLIBORMarketModel
 
+def forwardCurve2010 = [ 0.0: 0.01, 2.0: 0.025, 3.0: 0.029, 6.0: 0.041, 9.0: 0.045, 12.0: 0.046, 15.0: 0.045, 18.0: 0.042, 21.0: 0.038 ]
+
 /*
 Creates ten tests with decreasing spread value correlation and otherwise identical parameters
  */
-(0..10).each { val ->
+[ 10, 6, 3, 1, 0 ].each { val ->
+
     test("low_spread_value_convergence/${val}_additive") {
         params = [
                 numberOfParams: 15,
@@ -21,8 +24,8 @@ Creates ten tests with decreasing spread value correlation and otherwise identic
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
-                syntheticCurve('synth_EURIBOR', [ 0.0: 0.03 - 0.02 * val, 5.0: 0.03 - 0.01 * val, 10.0: 0.03 - 0.01 * val, 15.0: 0.03 - 0.01 * val, 20.0: 0.03 - 0.02 * val ]),
-                syntheticCurve('synth_OIS', [ 0.0: 0.01, 5.0: 0.02, 10.0: 0.02, 15.0: 0.02, 20.0: 0.01 ]),
+                syntheticCurve('synth_EURIBOR', forwardCurve2010.collectEntries { k,v -> [ (k): v + 0.001 * val ] }),
+                syntheticCurve('synth_OIS', forwardCurve2010),
                 0.9, 0.85, SyntheticProductsWithCapletCalibration.CalibrationMethod.NONE
         )
     }
@@ -31,7 +34,7 @@ Creates ten tests with decreasing spread value correlation and otherwise identic
 /*
 Creates ten tests with decreasing spread value correlation and otherwise identical parameters
  */
-(0..10).each { val ->
+[ 10, 6, 3, 1, 0 ].each { val ->
     test("low_spread_value_convergence/${val}_multiplicative") {
         params = [
                 numberOfParams: 15,
@@ -46,8 +49,8 @@ Creates ten tests with decreasing spread value correlation and otherwise identic
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
-                syntheticCurve('synth_EURIBOR', [ 0.0: 0.03 - 0.02 * val, 5.0: 0.03 - 0.01 * val, 10.0: 0.03 - 0.01 * val, 15.0: 0.03 - 0.01 * val, 20.0: 0.03 - 0.02 * val ]),
-                syntheticCurve('synth_OIS', [ 0.0: 0.01, 5.0: 0.02, 10.0: 0.02, 15.0: 0.02, 20.0: 0.01 ]),
+                syntheticCurve('synth_EURIBOR', forwardCurve2010.collectEntries { k,v -> [ (k): v + 0.001 * val ] }),
+                syntheticCurve('synth_OIS', forwardCurve2010),
                 0.9, 0.85, SyntheticProductsWithCapletCalibration.CalibrationMethod.NONE
         )
     }
@@ -56,7 +59,7 @@ Creates ten tests with decreasing spread value correlation and otherwise identic
 /*
 Creates ten tests with decreasing spread value correlation and otherwise identical parameters
  */
-(0..10).each { val ->
+[ 10, 6, 3, 1, 0 ].each { val ->
     test("low_spread_value_convergence/${val}_martingale") {
         params = [
                 numberOfParams: 15,
@@ -71,8 +74,8 @@ Creates ten tests with decreasing spread value correlation and otherwise identic
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
-                syntheticCurve('synth_EURIBOR', [ 0.0: 0.03 - 0.02 * val, 5.0: 0.03 - 0.01 * val, 10.0: 0.03 - 0.01 * val, 15.0: 0.03 - 0.01 * val, 20.0: 0.03 - 0.02 * val ]),
-                syntheticCurve('synth_OIS', [ 0.0: 0.01, 5.0: 0.02, 10.0: 0.02, 15.0: 0.02, 20.0: 0.01 ]),
+                syntheticCurve('synth_EURIBOR', forwardCurve2010.collectEntries { k,v -> [ (k): v + 0.001 * val ] }),
+                syntheticCurve('synth_OIS', forwardCurve2010),
                 0.9, 0.85, SyntheticProductsWithCapletCalibration.CalibrationMethod.NONE
         )
     }
@@ -81,7 +84,7 @@ Creates ten tests with decreasing spread value correlation and otherwise identic
 /*
 Creates ten tests with decreasing spread volatility and otherwise identical parameters
  */
-(0..10).each { vol ->
+[ 10, 6, 3, 1, 0 ].each { vol ->
     test("low_spread_vola_convergence/${vol}_additive") {
         params = [
                 numberOfParams: 15,
@@ -96,8 +99,8 @@ Creates ten tests with decreasing spread volatility and otherwise identical para
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
-                syntheticCurve('synth_EURIBOR', [ 0.0: 0.01, 5.0: 0.025, 10.0: 0.03, 15.0: 0.03, 20.0: 0.03 ]),
-                syntheticCurve('synth_OIS', [ 0.0: 0.01, 5.0: 0.02, 10.0: 0.02, 15.0: 0.02, 20.0: 0.01 ]),
+                forwardCurve('2013_EURIBOR_6M_Kienitz'),
+                forwardCurve('2013_EONIA_OIS_Kienitz'),
                 0.9, 0.85, SyntheticProductsWithCapletCalibration.CalibrationMethod.NONE
         )
     }
@@ -106,7 +109,7 @@ Creates ten tests with decreasing spread volatility and otherwise identical para
 /*
 Creates ten tests with decreasing spread volatility and otherwise identical parameters
  */
-(0..10).each { vol ->
+[ 10, 6, 3, 1, 0 ].each { vol ->
     test("low_spread_vola_convergence/${vol}_multiplicative") {
         params = [
                 numberOfParams: 15,
@@ -121,8 +124,8 @@ Creates ten tests with decreasing spread volatility and otherwise identical para
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
-                syntheticCurve('synth_EURIBOR', [ 0.0: 0.01, 5.0: 0.025, 10.0: 0.03, 15.0: 0.03, 20.0: 0.03 ]),
-                syntheticCurve('synth_OIS', [ 0.0: 0.01, 5.0: 0.02, 10.0: 0.02, 15.0: 0.02, 20.0: 0.01 ]),
+                forwardCurve('2013_EURIBOR_6M_Kienitz'),
+                forwardCurve('2013_EONIA_OIS_Kienitz'),
                 0.9, 0.85, SyntheticProductsWithCapletCalibration.CalibrationMethod.NONE
         )
     }
@@ -131,7 +134,7 @@ Creates ten tests with decreasing spread volatility and otherwise identical para
 /*
 Creates ten tests with decreasing spread volatility and otherwise identical parameters
  */
-(0..10).each { vol ->
+[ 10, 6, 3, 1, 0 ].each { vol ->
     test("low_spread_vola_convergence/${vol}_martingale") {
         params = [
                 numberOfParams: 15,
@@ -146,8 +149,8 @@ Creates ten tests with decreasing spread volatility and otherwise identical para
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
-                syntheticCurve('synth_EURIBOR', [ 0.0: 0.01, 5.0: 0.025, 10.0: 0.03, 15.0: 0.03, 20.0: 0.03 ]),
-                syntheticCurve('synth_OIS', [ 0.0: 0.01, 5.0: 0.02, 10.0: 0.02, 15.0: 0.02, 20.0: 0.01 ]),
+                forwardCurve('2013_EURIBOR_6M_Kienitz'),
+                forwardCurve('2013_EONIA_OIS_Kienitz'),
                 0.9, 0.85, SyntheticProductsWithCapletCalibration.CalibrationMethod.NONE
         )
     }

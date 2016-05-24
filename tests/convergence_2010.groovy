@@ -16,7 +16,9 @@ Creates four tests with increasing number of monte carlo paths
                 numberOfSeeds: paths[0],
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.ADDITIVE,
                 numberOfRandomRuns: 0,
-                setParams: false
+                setParams: false,
+                calibrateSC: true,
+                calibrateMC: true
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
@@ -40,7 +42,9 @@ Creates four tests with increasing number of monte carlo paths
                 numberOfSeeds: paths[0],
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.MULTIPLICATIVE,
                 numberOfRandomRuns: 0,
-                setParams: false
+                setParams: false,
+                calibrateSC: true,
+                calibrateMC: true
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(
@@ -64,7 +68,9 @@ Creates four tests with increasing number of monte carlo paths
                 numberOfSeeds: paths[0],
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.MMARTINGALE,
                 numberOfRandomRuns: 0,
-                setParams: false
+                setParams: false,
+                calibrateSC: true,
+                calibrateMC: true
         ]
 
         calibrationData = SyntheticProductsWithCapletCalibration.newInstance(

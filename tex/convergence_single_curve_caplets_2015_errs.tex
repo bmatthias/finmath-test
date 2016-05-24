@@ -1,0 +1,26 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=180pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			%legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1},
+			xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+  			xtick=data,
+			bar width=24pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (1x1000,0.55199182498) (1x10000,0.16168526766) (1x100000,0.089746079082) (10x100000,0.072377612661)  };
+		\addplot[color=s1,fill=s1] coordinates { (1x1000,0.23015770451) (1x10000,0.070888192388) (1x100000,0.035409461226) (10x100000,0.038791798456)  };
+		\addplot[color=s2,fill=s2] coordinates { (1x1000,0.27287908081) (1x10000,0.078836113486) (1x100000,0.042822450609) (10x100000,0.04382623581)  };
+
+		\legend{Max Error,Mean Error,RMSE}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Errors of Monte-Carlo valuation of caplets vs. their Black valuation in a single-curve model.}
+\end{minipage}
+\end{center}

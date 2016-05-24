@@ -15,10 +15,7 @@ import net.finmath.stochastic.RandomVariableInterface;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class CSVHelper {
@@ -125,7 +122,7 @@ public class CSVHelper {
             for(int productIndex = 0; productIndex < maxProducts; productIndex++) {
                 for (String productName : results.keySet()) {
                     double value = 100.0 * results.get(productName)[productIndex].getAverage();
-                    double standardDeviation = 2.0 * results.get(productName)[productIndex].getStandardDeviation();
+                    double standardDeviation = results.get(productName)[productIndex].getStandardDeviation();
                     writer.write(value + "\t" + standardDeviation + "\t");
                     standardDeviationWriter.write(standardDeviation + "\t");
                     shortWriter.write(formatterValue.format(Math.signum(value) * Math.min(Math.abs(value), 99999)) + "\t");
@@ -133,6 +130,17 @@ public class CSVHelper {
                 writer.write("\n");
                 shortWriter.write("\n");
                 standardDeviationWriter.write("\n");
+            }
+        }
+    }
+
+    public static void writeFactorMatrix(String fileName, LIBORCovarianceModelFromVolatilityAndCorrelationExtraParameters model) throws Exception {
+        try (FileWriter writer = new FileWriter(new File(fileName + "_factors.csv"))) {
+            writer.write("Component\tFactor\tCorrelation\n");
+            for(int component = 0; component < 2 * model.getLiborPeriodDiscretization().getNumberOfTimeSteps(); component++) {
+                for(int factor = 0; factor < model.getNumberOfFactors(); factor++) {
+                    writer.write(component + "\t" + factor + "\t" + String.valueOf(model.getCorrelationModel().getFactorLoading(0, factor, component)) + "\n");
+                }
             }
         }
     }
@@ -298,4 +306,26 @@ public class CSVHelper {
                 liborPeriodLength
         );
     }
+
+    /*public static void main(String[] args) throws Exception {
+        Map<String, List<Double>> values = new HashMap<>();
+        File baseFolder = new File("results");
+        for (File folder : baseFolder.listFiles()) {
+            for (File innerFolder : folder.listFiles()) {
+                File resultsFile = new File(innerFolder.getAbsolutePath() + File.separator + "initial_calibration.csv");
+                try (FileReader fileReader = new FileReader(resultsFile)) {
+                    CSVReader reader = new CSVReader(fileReader, '\t');
+                    List<String[]> results = reader.readAll();
+                    for (String product : results.get(0)) {
+                        values.put(product, new ArrayList<>());
+                    }
+                    for(int i = 1; i < results.size(); i++) {
+                        for(int j = 0; j < values.size(); j++) {
+                            if ()
+                        }
+                    }
+                }
+            }
+        }
+    }*/
 }

@@ -9,18 +9,31 @@ class Plot implements Callable {
                     'Integrated-Expectation': [ 'Caplet Vola Monte-Carlo Multi-Curve', 'Caplet Vola Analytic Multi-Curve Integrated-Expectation' ],
                     'Levy'                  : [ 'Caplet Vola Monte-Carlo Multi-Curve', 'Caplet Vola Analytic Multi-Curve Fenton-Wilkinson' ],
                     'Ju'                    : [ 'Caplet Vola Monte-Carlo Multi-Curve', 'Caplet Vola Analytic Multi-Curve Ju' ],
-                    'Ho'                    : [ 'Caplet Vola Monte-Carlo Multi-Curve', 'Caplet Vola Analytic Multi-Curve Ho' ]
+                    //'Ho'                    : [ 'Caplet Vola Monte-Carlo Multi-Curve', 'Caplet Vola Analytic Multi-Curve Ho' ]
             ], Swaptions: [
-
+                'Drift-Freeze'              : [ 'Swaption Vola Monte-Carlo Multi-Curve', 'Swaption Vola Analytic Multi-Curve Drift-Freeze' ],
+                'Swap Measure'    : [ 'Swaption Vola Monte-Carlo Multi-Curve', 'Swaption Vola Analytic Multi-Curve Integrated-Expectation' ]
             ]
     ]
 
-    static final  DEFAULT_PLOTS = [ Caplets: [
+    static final  DEFAULT_PLOTS = [ Caplets_Vola_Multi_Curve: [
                     'Monte-Carlo'           : 'Caplet Vola Monte-Carlo Multi-Curve',
                     'Integrated-Expectation': 'Caplet Vola Analytic Multi-Curve Integrated-Expectation' ,
                     'Levy'                  : 'Caplet Vola Analytic Multi-Curve Fenton-Wilkinson' ,
                     'Ju'                    : 'Caplet Vola Analytic Multi-Curve Ju' ,
-                    'Ho'                    : 'Caplet Vola Analytic Multi-Curve Ho'
+                    //'Ho'                    : 'Caplet Vola Analytic Multi-Curve Ho'
+            ], Caplets_Vola_Single_And_Multi_Curve: [
+                    'Monte-Carlo Single-Curve'  : 'Caplet Vola Monte-Carlo Single-Curve',
+                    'Monte-Carlo Multi-Curve'   : 'Caplet Vola Monte-Carlo Multi-Curve',
+                    'Analytic Single-Curve'     : 'Caplet Vola Analytic Single-Curve',
+                    'Integrated-Expectation'    : 'Caplet Vola Analytic Multi-Curve Integrated-Expectation' ,
+                    'Levy'                      : 'Caplet Vola Analytic Multi-Curve Fenton-Wilkinson' ,
+                    'Ju'                        : 'Caplet Vola Analytic Multi-Curve Ju' ,
+                    //'Ho'                        : 'Caplet Vola Analytic Multi-Curve Ho'
+            ], Swaptions_Vola_Multi_Curve: [
+                    'Monte-Carlo'               : 'Swaption Vola Monte-Carlo Multi-Curve',
+                    'Drift-Freeze'              : 'Swaption Vola Analytic Multi-Curve Drift-Freeze' ,
+                    'Integrated-Expectation'    : 'Swaption Vola Analytic Multi-Curve Integrated-Expectation' ,
             ]
     ]
 
@@ -52,6 +65,17 @@ class Plot implements Callable {
             })
         }
         TexCreator.createPlot(params.yMin, params.yMax, params.xLabel, params.yLabel, params.caption, res, fileName)
+    }
+
+    def plotFromCSVWithErrors(Map<String, Map> filesToProductsMap) {
+        new File(fileName).parentFile.mkdirs()
+        def res = []
+        filesToProductsMap.each { file, product ->
+            res.addAll(product.collect {
+                [ file, it.value, it.key ] as String[]
+            })
+        }
+        TexCreator.createPlotWithErrors(params.yMin, params.yMax, params.xLabel, params.yLabel, params.caption, res, fileName)
     }
 
     def plotErrors(Map fileToProduct) {

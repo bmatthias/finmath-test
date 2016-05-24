@@ -1,0 +1,26 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=180pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			%legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1},
+			xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+  			xtick=data,
+			bar width=24pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (1x1000,0.0042097983475) (1x10000,9.6606354943E-4) (1x100000,4.9995344241E-4) (10x100000,3.6120756803E-4)  };
+		\addplot[color=s1,fill=s1] coordinates { (1x1000,0.0016198628039) (1x10000,4.3742468638E-4) (1x100000,1.8413224141E-4) (10x100000,2.4075378155E-4)  };
+		\addplot[color=s2,fill=s2] coordinates { (1x1000,0.0020580026486) (1x10000,5.1652898388E-4) (1x100000,2.3454421262E-4) (10x100000,2.7062163797E-4)  };
+
+		\legend{Max Error,Mean Error,RMSE}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Errors of Monte-Carlo valuation of (OIS) forward rates vs. their expected values in the multiplicative model.}
+\end{minipage}
+\end{center}

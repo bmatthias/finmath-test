@@ -1,0 +1,26 @@
+\begin{center}
+\begin{minipage}{\linewidth}
+\begin{tikzpicture}
+
+   \begin{axis}[ybar=1pt, thick, width=\linewidth, height=180pt, ymin = 0, ytick align=outside, %ymode=log,
+        	ytick pos=left, xtick align=outside, ylabel={error},
+         	xtick pos=left, nodes near coords, every node near coord/.append style={rotate=90, anchor=west},
+			%legend style={at={(0.5,-0.15)}, anchor=north,legend columns=-1},
+			xmin={[normalized]-0.6}, xmax={[normalized]3.6},
+			symbolic x coords={ 1x1000,1x10000,1x100000,10x100000 },
+  			xtick=data,
+			bar width=24pt
+	]
+
+		\pgfplotsset{xticklabel={\tick},scaled x ticks=false}
+
+		\addplot[color=s0,fill=s0] coordinates { (1x1000,0.0032760158162) (1x10000,6.8048777465E-4) (1x100000,1.8816602358E-4) (10x100000,6.924681334E-5)  };
+		\addplot[color=s1,fill=s1] coordinates { (1x1000,0.0015252157919) (1x10000,2.6749878519E-4) (1x100000,6.6216918176E-5) (10x100000,3.4803021541E-5)  };
+		\addplot[color=s2,fill=s2] coordinates { (1x1000,0.0019221528338) (1x10000,3.1600942344E-4) (1x100000,8.7797034759E-5) (10x100000,3.8885314932E-5)  };
+
+		\legend{Max Error,Mean Error,RMSE}
+	\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Errors of Monte-Carlo valuation of (IBOR) forward rates vs. their expected values in the multiplicative model.}
+\end{minipage}
+\end{center}

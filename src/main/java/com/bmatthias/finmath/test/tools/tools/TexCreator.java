@@ -19,16 +19,42 @@ public class TexCreator {
             String legendEntry = entry[2];
             String fileToPlot = entry[0];
 
-            String xColumn = fileToPlot.contains("swaption") ? "=Swaption Exercise Date" : "=Time";
+            String xColumn = fileToPlot.contains("swaption") ? "=Time" : "=Time";
             productString.append(legendEntry).append(",");
-            plots.append("\\\\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}]" + "[color=s")
-                    .append(i).append(",mark=*,mark options={solid},smooth,line width=1.25pt] \n")
+            plots.append("\\\\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}]" + "[smooth] \n")
                     .append("        table[x").append(xColumn).append(",y=productName,y error=productName Error,col sep=tab] {fileName_results.csv};\n"
                     .replaceAll("fileName", fileToPlot)
                     .replaceAll("productName", product)).append("\n");
         }
 
         writePlot(yMin, yMax, xLabel, yLabel, caption, fileName, plots.toString(), productString.substring(0, productString.length() - 1));
+    }
+
+    public static void createPlotWithErrors(double yMin, double yMax, String xLabel, String yLabel, String caption, List<String[]> filesToProducts, String fileName) throws IOException {
+        StringBuilder valuePlots = new StringBuilder();
+        StringBuilder errorPlots = new StringBuilder();
+        StringBuilder productString = new StringBuilder();
+        for (int i = 0; i < filesToProducts.size(); i++) {
+            String[] entry = filesToProducts.get(i);
+            String product = entry[1];
+            String legendEntry = entry[2];
+            String fileToPlot = entry[0];
+
+            String xColumn = fileToPlot.contains("swaption") ? "=Time" : "=Time";
+            productString.append(legendEntry).append(",");
+            valuePlots.append("\\\\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}]" + "[smooth] \n")
+                    .append("        table[x").append(xColumn).append(",y=productName,y error=productName Error,col sep=tab] {fileName_results.csv};\n"
+                    .replaceAll("fileName", fileToPlot)
+                    .replaceAll("productName", product)).append("\n");
+
+            if(i > 0) errorPlots.append("\\\\addplot+[only marks,error bars/.cd,y dir=both,y explicit,error bar style={line width=0.5pt}]" + "[smooth] \n")
+                    .append("        table[x").append(xColumn).append(",y expr=abs(\\\\thisrow{productName} - \\\\thisrow{referenceProduct})/abs(\\\\thisrow{referenceProduct}),y error=productName Error,col sep=tab] {fileName_results.csv};\n"
+                    .replaceAll("fileName", fileToPlot)
+                    .replaceAll("referenceProduct", filesToProducts.get(0)[1])
+                    .replaceAll("productName", product)).append("\n");
+        }
+
+        writePlotWithErrors(yMin, yMax, xLabel, yLabel, caption, fileName, valuePlots.toString(), errorPlots.toString(), productString.substring(0, productString.length() - 1));
     }
 
     public static void writePlot(double yMin, double yMax, String xLabel, String yLabel, String caption, String fileName, String plots, String productString) throws IOException {
@@ -40,6 +66,31 @@ public class TexCreator {
                         try {
                             writer.write(line
                                     .replaceAll("plotsArea", plots)
+                                    .replaceAll("productString", productString)
+                                    .replaceAll("yMin", String.valueOf(yMin))
+                                    .replaceAll("yMax", String.valueOf(yMax))
+                                    .replaceAll("xLabel", xLabel)
+                                    .replaceAll("yLabel", yLabel)
+                                    .replaceAll("Caption", caption)+ "\n"
+                            );
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+            );
+        }
+    }
+
+    public static void writePlotWithErrors(double yMin, double yMax, String xLabel, String yLabel, String caption, String fileName, String valuePlots, String errorPlots, String productString) throws IOException {
+        try (Reader fileReader = new InputStreamReader(TexCreator.class.getResourceAsStream("/templates/plot_with_errors_template.tex"));
+             BufferedReader reader = new BufferedReader(fileReader);
+             Writer writer = new FileWriter(fileName + "_plot.tex")
+        ) {
+            reader.lines().forEach(line -> {
+                        try {
+                            writer.write(line
+                                    .replaceAll("plotsArea", valuePlots)
+                                    .replaceAll("errorPlotsArea", errorPlots)
                                     .replaceAll("productString", productString)
                                     .replaceAll("yMin", String.valueOf(yMin))
                                     .replaceAll("yMax", String.valueOf(yMax))

@@ -1,0 +1,31 @@
+\begin{center}
+  \begin{minipage}{\linewidth}
+    \begin{tikzpicture}
+      \begin{axis}[smooth, thick,cycle list name=plots,
+          width=0.98\linewidth,height=220pt,
+          ymajorgrids={true},minor y tick num={1},yminorgrids={true},
+          grid style={gray!30},
+          xlabel={Volatility},xlabel style={yshift=-0.4cm,xshift=1cm},
+          ylabel={Error},
+          legend style={at={(0.5,-0.25)},anchor=north,draw=none,legend columns=4}, % Put the legend below the plot
+          xtick align=outside,
+          xtick pos=left,
+          ytick align=outside,
+          ytick pos=left,
+          xmin = 0,
+          ymin = 0.0,
+          ymax = 0.04,
+          x label style={rotate=0,anchor=east} % Display labels sideways
+        ]
+
+        \addplot[color=s0] coordinates { (0,0.0025768003553)(1,0.0036496456246)(2,0.0051541020889)(3,0.0072173789111)(4,0.0098593699253)(5,0.013013151624)(6,0.016836479866)(7,0.021192537921)(8,0.026620822015)(9,0.032963140033)(10,0.039122865216) };
+\addplot[color=s1] coordinates { (0,0.0034574206239)(1,0.0050305190336)(2,0.0071729174596)(3,0.010008136504)(4,0.013560583511)(5,0.017771544835)(6,0.022786540214)(7,0.028519556174)(8,0.035330925658)(9,0.043106405276)(10,0.050887454861) };
+\addplot[color=s2] coordinates { (0,0.0028573403721)(1,0.004197032031)(2,0.0061109951997)(3,0.0087544355344)(4,0.012172122687)(5,0.016315130919)(6,0.021339044582)(7,0.02714661752)(8,0.034106663319)(9,0.042074794966)(10,0.050045433091) };
+
+        \legend{ Integrated-Expectation,Levy,Ju }
+      \end{axis}
+    \end{tikzpicture}
+    \captionof{figure}{Caption}
+  \end{minipage}
+\end{center}
+

@@ -25,7 +25,7 @@ import java.util.List;
 
 public class SyntheticProductsWithCapletCalibration {
     public enum CalibrationMethod {
-        INTEGRATED_EXPECTATION, FENTON_WILKINSON, MONTE_CARLO, NONE
+        INTEGRATED_EXPECTATION, JU, SWAPTION, NONE
     }
 
     public static CalibrationData newInstance(ForwardCurveInterface iborForwardCurve, ForwardCurveInterface oisForwardCurve, double euriborVol, double eoniaVol, CalibrationMethod calibrationMethod) {
@@ -81,36 +81,51 @@ public class SyntheticProductsWithCapletCalibration {
                 double[] euriborSwaprates = new double[numberOfPeriods];
                 Arrays.fill(euriborSwaprates, euriborSwaprate);
 
-                // This is just some swaption volatility used for testing, true market data should go here.
-                double eoniaTargetVolatility = eoniaVol * ((0.5 + 0.01 * liborRateTimeHorzion * maturity) * Math.exp(-0.01 * liborRateTimeHorzion * maturity) + 0.5);
-                double euriborTargetVolatility = euriborVol * ((0.5 + 0.01 * liborRateTimeHorzion * maturity) * Math.exp(-0.01 * liborRateTimeHorzion * maturity) + 0.5);
-
                 double eoniaStrike = oisForwardCurve.getForward(null, maturity);
                 double euriborStrike = iborForwardCurve.getForward(null, maturity);
 
-                AbstractLIBORMonteCarloProduct eoniaCapletAnalytic = new CapletAnalyticApproximation(eoniaStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY);
-                AbstractLIBORMonteCarloProduct euriborCapletCalibration;
                 switch (calibrationMethod) {
                     case INTEGRATED_EXPECTATION:
-                        euriborCapletCalibration = new CapletAnalyticApproximation(
+                        AbstractLIBORMonteCarloProduct eoniaCapletAnalytic = new CapletAnalyticApproximation(eoniaStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY);
+                        AbstractLIBORMonteCarloProduct euriborCapletCalibration = new CapletAnalyticApproximation(
                                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY,
                                 CapletAnalyticApproximation.MultiCurveApproximation.INTEGRATED_EXPECTATION
                         );
+                        // This is just some volatility used for testing, true market data should go here.
+                        double eoniaTargetCapletVolatility = eoniaVol * ((0.5 + 0.01 * liborRateTimeHorzion * maturity) * Math.exp(-0.01 * liborRateTimeHorzion * maturity) + 0.5);
+                        double euriborTargetCapletVolatility = euriborVol * ((0.5 + 0.01 * liborRateTimeHorzion * maturity) * Math.exp(-0.01 * liborRateTimeHorzion * maturity) + 0.5);
+                        eoniaCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(eoniaCapletAnalytic, eoniaTargetCapletVolatility, 1.0));
+                        euriborCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(euriborCapletCalibration, euriborTargetCapletVolatility, 1.0));
                         break;
-                    case FENTON_WILKINSON:
+                    case JU:
+                        eoniaCapletAnalytic = new CapletAnalyticApproximation(eoniaStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY);
                         euriborCapletCalibration = new CapletAnalyticApproximation(
                                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY,
-                                CapletAnalyticApproximation.MultiCurveApproximation.FENTON_WILKINSON
+                                CapletAnalyticApproximation.MultiCurveApproximation.JU
                         );
+                        // This is just some volatility used for testing, true market data should go here.
+                        eoniaTargetCapletVolatility = eoniaVol * ((0.5 + 0.01 * liborRateTimeHorzion * maturity) * Math.exp(-0.01 * liborRateTimeHorzion * maturity) + 0.5);
+                        euriborTargetCapletVolatility = euriborVol * ((0.5 + 0.01 * liborRateTimeHorzion * maturity) * Math.exp(-0.01 * liborRateTimeHorzion * maturity) + 0.5);
+                        eoniaCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(eoniaCapletAnalytic, eoniaTargetCapletVolatility, 1.0));
+                        euriborCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(euriborCapletCalibration, euriborTargetCapletVolatility, 1.0));
                         break;
                     default:
-                        euriborCapletCalibration = new Caplet(maturity, liborPeriodLength, euriborStrike,
-                                liborPeriodLength, false, ProductInterface.ValueUnit.VOLATILITY
+                    case SWAPTION:
+                        SwaptionAnalyticApproximation eoniaSwaptionAnalyticVola = new SwaptionAnalyticApproximation(
+                                eoniaSwaprate, swapTenor, SwaptionAnalyticApproximation.ValueUnit.VOLATILITY, SwaptionAnalyticApproximation.MultiCurveApproximation.SINGLE_CURVE
                         );
-                }
+                        SwaptionAnalyticApproximation euriborSwaptionAnalyticSimpleVola = new SwaptionAnalyticApproximation(
+                                euriborSwaprate, swapTenor, SwaptionAnalyticApproximation.ValueUnit.VOLATILITY, SwaptionAnalyticApproximation.MultiCurveApproximation.DRIFT_FREEZE
+                        );
 
-                eoniaCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(eoniaCapletAnalytic, eoniaTargetVolatility, 1.0));
-                euriborCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(euriborCapletCalibration, euriborTargetVolatility, 1.0));
+                        // This is just some swaption volatility used for testing, true market data should go here.
+                        double eoniaSwaptionTargetVolatilty = eoniaVol + eoniaVol * Math.exp(-exerciseDate / 10.0) + eoniaVol * Math.exp(-(exerciseDate+numberOfPeriods) / 10.0);
+                        double euriborSwaptionTargetVolatilty = euriborVol + euriborVol * Math.exp(-exerciseDate / 10.0) + euriborVol * Math.exp(-(exerciseDate+numberOfPeriods) / 10.0);
+
+                        eoniaCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(eoniaSwaptionAnalyticVola, eoniaSwaptionTargetVolatilty, 1.0));
+                        euriborCalibrationItems.add(new LIBORMarketModelInterface.CalibrationItem(euriborSwaptionAnalyticSimpleVola, euriborSwaptionTargetVolatilty, 1.0));
+                        break;
+                }
 
                 putCaplets(pricingProducts, maturity, liborPeriodLength, euriborStrike, eoniaStrike);
                 putSwaptions(pricingProducts, swapTenor, euriborSwaprate, eoniaSwaprate);
@@ -148,13 +163,13 @@ public class SyntheticProductsWithCapletCalibration {
                 CapletAnalyticApproximation.MultiCurveApproximation.INTEGRATED_EXPECTATION);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticFentonWilkinson = new CapletAnalyticApproximation(
                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY,
-                CapletAnalyticApproximation.MultiCurveApproximation.FENTON_WILKINSON);
+                CapletAnalyticApproximation.MultiCurveApproximation.LEVY);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticJu = new CapletAnalyticApproximation(
                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY,
                 CapletAnalyticApproximation.MultiCurveApproximation.JU);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticHo = new CapletAnalyticApproximation(
                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VOLATILITY,
-                CapletAnalyticApproximation.MultiCurveApproximation.HO_SCHWARTZ_YEH);
+                CapletAnalyticApproximation.MultiCurveApproximation.HO);
 
         AbstractLIBORMonteCarloProduct euriborCapletValue = new Caplet(maturity, periodLength, euriborStrike, periodLength,
                 false, ProductInterface.ValueUnit.VALUE);
@@ -166,13 +181,13 @@ public class SyntheticProductsWithCapletCalibration {
                 CapletAnalyticApproximation.MultiCurveApproximation.INTEGRATED_EXPECTATION);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticFentonWilkinsonValue = new CapletAnalyticApproximation(
                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VALUE,
-                CapletAnalyticApproximation.MultiCurveApproximation.FENTON_WILKINSON);
+                CapletAnalyticApproximation.MultiCurveApproximation.LEVY);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticJuValue = new CapletAnalyticApproximation(
                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VALUE,
                 CapletAnalyticApproximation.MultiCurveApproximation.JU);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticHoValue = new CapletAnalyticApproximation(
                 euriborStrike, maturity, CapletAnalyticApproximation.ValueUnit.VALUE,
-                CapletAnalyticApproximation.MultiCurveApproximation.HO_SCHWARTZ_YEH);
+                CapletAnalyticApproximation.MultiCurveApproximation.HO);
         AbstractLIBORMonteCarloProduct euriborCapletZeroStrikeValue = new Caplet(maturity, periodLength,
                 0.0, periodLength, false, ProductInterface.ValueUnit.VALUE);
         AbstractLIBORMonteCarloProduct euriborCapletAnalyticZeroStrikeDriftFreezeValue = new CapletAnalyticApproximation(

@@ -1,6 +1,7 @@
 package tests
 
 import com.bmatthias.finmath.test.tools.tools.calibrationdata.SyntheticProductsWithCapletCalibration
+import net.finmath.marketdata.model.curves.ForwardCurve
 import net.finmath.montecarlo.interestrate.MultiCurveLIBORMarketModel
 
 /*
@@ -15,8 +16,10 @@ Creates ten tests with increasing correlation and otherwise identical parameters
                 numberOfPaths: 100000,
                 numberOfSeeds: 1,
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.ADDITIVE,
-                oisParams: [ 0.7,0.7,0.5,0.1,0.1,0.1,0.1,0.004 ],
-                spreadParams: [ 0.8,0.8,0.8,0.0,0.1,0.1,0.1,0.1 * corr,0.004 ],
+                oisParams: [ 0.7,0.7,0.5,0.1,0.1,0.1,0.1 ],
+                spreadParams: [ 0.8,0.8,0.8,0.0,0.1,0.1,0.1,0.1 * corr ],
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
                 numberOfRandomRuns: 0
         ]
 
@@ -40,8 +43,10 @@ Creates ten tests with increasing volatility and otherwise identical parameters
                 numberOfPaths: 100000,
                 numberOfSeeds: 1,
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.ADDITIVE,
-                oisParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1,0.004 ],
-                spreadParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1,0.5,0.004 ],
+                oisParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1 ],
+                spreadParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1,0.5 ],
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
                 numberOfRandomRuns: 0
         ]
 
@@ -65,8 +70,10 @@ Creates ten tests with increasing correlation and otherwise identical parameters
                 numberOfPaths: 100000,
                 numberOfSeeds: 1,
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.MULTIPLICATIVE,
-                oisParams: [ 0.7,0.7,0.5,0.1,0.1,0.1,0.1,0.004 ],
-                spreadParams: [ 0.8,0.8,0.8,0.0,0.1,0.1,0.1,0.1 * corr,0.004 ],
+                oisParams: [ 0.7,0.7,0.5,0.1,0.1,0.1,0.1 ],
+                spreadParams: [ 0.8,0.8,0.8,0.0,0.1,0.1,0.1,0.1 * corr ],
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
                 numberOfRandomRuns: 0
         ]
 
@@ -90,8 +97,10 @@ Creates ten tests with increasing volatility and otherwise identical parameters
                 numberOfPaths: 100000,
                 numberOfSeeds: 1,
                 multiCurveModel: MultiCurveLIBORMarketModel.MultiCurveModel.MULTIPLICATIVE,
-                oisParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1,0.004 ],
-                spreadParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1,0.5,0.004 ],
+                oisParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1 ],
+                spreadParams: [ 0.4,0.3,0.4,0.05 * vol,0.1,0.1,0.1,0.5 ],
+                oisShift: ForwardCurve.createForwardCurveFromForwards("oisShift", [ 0.0, 10.0, 11.0, 20.0 ] as double[], [ 0.01, 0.01, 0.0, 0.0 ] as double[], 0.0),
+                spreadShift: ForwardCurve.createForwardCurveFromForwards("spreadShift", [ 0.0 ] as double[], [ 0.0 ] as double[], 0.0),
                 numberOfRandomRuns: 0
         ]
 
